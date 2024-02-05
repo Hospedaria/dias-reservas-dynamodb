@@ -38,6 +38,16 @@ Resources:
         AttributeType: "S"
       BillingMode: !Ref BillingMode
       DeletionProtectionEnabled: !Ref DeletionProtectionEnabled
+      GlobalSecondaryIndexes:
+        - IndexName: "ix_reserva"
+          KeySchema:
+            - AttributeName: "id"
+              KeyType: "HASH"
+          ProvisionedThroughput: 
+            ReadCapacityUnits: !Ref RCU
+            WriteCapacityUnits: !Ref WCU
+          Projection:
+            ProjectionType: "ALL"
       KeySchema: 
         - AttributeName: "data"
           KeyType: "HASH"
